@@ -1,0 +1,96 @@
+<!doctype html>
+{% load staticfiles %}
+{% load admin_urls %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/jumbotron.css" rel="stylesheet">
+    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
+    <title>{% block pagetitle %}Questions and Quizzes // A Place for Learning{{ page.title }} // Tim Barnes{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'educate/educate.css' %}" />
+    {% block js %} {% endblock %}
+    <meta name="keywords" content="education, training, learning, online, architecture, are" {% block keywords %}{% endblock %}" />
+    <meta name="description" content="{% block description %}{{ page.summary }}.{% endblock %}"Learning tools for busy people" />
+    <meta name="distribution" content="Global" />
+  </head>
+
+  <body role="document">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+	  {% comment %}
+	  <a class="navbar-brand" href="{% url 'home' %}">// The Knowledge //</a>
+	  {% endcomment %}
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+	  {% block nav %}
+	  <ul class="nav navbar-nav">
+	    <li><a href="{% url 'home' %}">Home</a></li>
+	    {% if user.is_authenticated %}
+	    <li><a href="{% url 'myHome' %}">My Home</a></li>
+	    <li><a href="{% url 'profile' %}">Profile</a></li>
+	    <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+	    <li><p class="navbar-text">Logged in as {{ user.username }}</p></li>
+	    {% else %}
+	    <li><a href="{% url 'auth_login' %}">Login</a></li>
+	    {% endif %}
+	  </ul>
+	  {% endblock %}
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div id="banner">
+	<h1><a href="{% url 'home' %}">// Questions and Quizzes //</a></h1>
+      </div>
+
+    <div class="jumbotron">
+      <div class="container">
+	{% block title %}<h1 class="pagetitle">Home</h1><br />{% endblock %}
+	{% block messages %}
+	{% if messages %}
+	<ul class=messages>
+	  {% for message in messages %}
+	  <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+	  {% endfor %}
+	</ul>
+	{% endif %}
+	{% endblock messages %}
+      </div>
+    </div>
+
+    <div class=container>
+	{% block content %}
+	{% endblock %}
+    </div>
+
+    <div class="sidebar">
+      <div class="container">
+      </div>
+    </div>
+
+    <footer class="footer">
+	<div class="container">
+	  {% block footer %}
+	  <p>A simple resource for tracking and managing projects.</p>
+	  <p>Information is provided on an as-is basis. No warranty is expressed or implied. Use at your own risk.</p>
+	  <p>Copyright (c) Timothy J Barnes 2018.</p>
+	  {% endblock %}
+	</div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
