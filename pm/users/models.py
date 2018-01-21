@@ -1,10 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from tinymce import models as tinymce_models
 
 
-class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class Account(AbstractUser):
     picture = models.ImageField(upload_to='media/profilepics/', blank=True)
     home = models.CharField(max_length=100, blank=True)
     interests = models.CharField(max_length=200, blank=True)

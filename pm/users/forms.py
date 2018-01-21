@@ -6,8 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, \
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Field
 from crispy_forms.bootstrap import FormActions
-
-from users.models import Profile
+from .models import Account
 
 
 class RegistrationForm(UserCreationForm):
@@ -72,7 +71,7 @@ class ProfileForm(forms.ModelForm):
                                css_class='btn-primary.btn-block')))
 
     class Meta:
-        model = Profile
+        model = Account
         fields = ['picture', 'home', 'interests', 'objectives']
 
 

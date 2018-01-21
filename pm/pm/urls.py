@@ -21,7 +21,6 @@ urlpatterns = [
           'post_change_redirect': '/users/profile/',
           'extra_context': {'message': 'Password successfully updated'}},
          name='password_change'), path('admin/', admin.site.urls),
-    path('accounts/', include('registration.backends.default.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
 ]

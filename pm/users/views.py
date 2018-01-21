@@ -2,35 +2,19 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib import messages
-from django.contrib.auth.models import User
-from registration.views import RegistrationView
 from users.forms import RegistrationForm, ProfileForm, UserDataForm
-from users.models import Profile
+from users.models import Account
+
 # Create your views here.
 
 
-class MenuMixin(object):
-    """Gets public articles, subjects and categories. All tags are public.
-    """
-
-    def get_context_data(self, **kwargs):
-        context = super(MenuMixin, self).get_context_data(**kwargs)
-        """
-        context['article_list'] = Article.objects.filter(public=True)
-        context['subject_list'] = Subject.objects.filter(public=True)
-        context['category_list'] = Category.objects.filter(public=True)
-        context['tag_list'] = Tag.objects.all()
-        """
-        return context
-
-
-class HomeView(MenuMixin, generic.TemplateView):
+class HomeView(generic.TemplateView):
     """Home page for the Educate project.
     """
     template_name = 'users/home.html'
 
 
-class UserRegistrationView(RegistrationView):
+class UserRegistrationView(generic.FormView):
     """
     Customized registration includes creation of the empty profile.
     """
@@ -43,11 +27,11 @@ class UserRegistrationView(RegistrationView):
         """
         print('Starting registration')
         print(cleaned_data)
-        u = User.objects.create_user(
+        u = Account.objects.create_user(
             cleaned_data['username'],
             '',
             cleaned_data['password1'])
-        p = Profile()
+        p = Account()
         p.user = u
         p.save()
         messages.success(self.request,
@@ -62,7 +46,7 @@ class ProfileView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
         user_form = UserDataForm(instance=self.request.user)
-        profile = get_object_or_404(Profile, user=self.request.user)
+        profile = get_object_or_404(Account, user=self.request.user)
         profile_form = ProfileForm(instance=profile)
         user_form.helper.form_action = reverse_lazy(
             'userdataUpdate',
@@ -71,7 +55,7 @@ class ProfileView(generic.TemplateView):
             'profileUpdate', args=[profile.pk])
         context.update({
             'profile': get_object_or_404(
-                Profile, user__username=self.request.user.username),
+                Account, user__username=self.request.user.username),
             'user_form': user_form,
             'profile_form': profile_form,
         })
@@ -81,7 +65,7 @@ class ProfileView(generic.TemplateView):
 class UpdateProfileView(generic.edit.UpdateView):
     """Save updated profile data. Called only with POST.
     """
-    model = Profile
+    model = Account
     fields = ['picture', 'home', 'interests', 'objectives']
     template_name = 'users/profile.html'
     success_url = reverse_lazy('profile')
@@ -89,7 +73,7 @@ class UpdateProfileView(generic.edit.UpdateView):
     def get_context_data(self, **kwargs):
         context = super(UpdateProfileView, self).get_context_data(**kwargs)
         user_form = UserDataForm(instance=self.request.user)
-        profile = get_object_or_404(Profile, user=self.request.user)
+        profile = get_object_or_404(UserWarning, user=self.request.user)
         profile_form = ProfileForm(instance=profile)
         user_form.helper.form_action = reverse_lazy(
             'userdataUpdate', args=[self.request.user.pk])
@@ -97,7 +81,7 @@ class UpdateProfileView(generic.edit.UpdateView):
             'profileUpdate', args=[profile.pk])
         context.update({
             'profile': get_object_or_404(
-                Profile, user__username=self.request.user.username),
+                Account, user__username=self.request.user.username),
             'user_form': user_form,
             'profile_form': profile_form,
         })
@@ -112,14 +96,14 @@ class UpdateProfileView(generic.edit.UpdateView):
 class UpdateUserDataView(generic.edit.UpdateView):
     """Save updated user data. Called only with POST.
     """
-    model = User
+    model = Account
     template_name = 'users/profile.html'
     success_url = reverse_lazy('profile')
 
     def get_context_data(self, **kwargs):
         context = super(UpdateUserDataView, self).get_context_data(**kwargs)
         user_form = UserDataForm(instance=self.request.user)
-        profile = get_object_or_404(Profile, user=self.request.user)
+        profile = get_object_or_404(Account, user=self.request.user)
         profile_form = ProfileForm(instance=profile)
         user_form.helper.form_action = reverse_lazy(
             'userdataUpdate', args=[self.request.user.pk])
@@ -127,7 +111,7 @@ class UpdateUserDataView(generic.edit.UpdateView):
                                                        args=[profile.pk])
         context.update({
             'profile':
-            get_object_or_404(Profile,
+            get_object_or_404(Account,
                               user__username=self.request.user.username),
             'user_form': user_form,
             'profile_form': profile_form,
@@ -156,7 +140,7 @@ class MyHomeView(generic.TemplateView):
         print('MYHOME')
         context = super(MyHomeView, self).get_context_data(**kwargs)
         context.update({
-            'profile': get_object_or_404(Profile, user=self.request.user),
+            'profile': get_object_or_404(Account, user=self.request.user),
         })
         print(context)
         return context
