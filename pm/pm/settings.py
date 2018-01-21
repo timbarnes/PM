@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'tinymce',
     'crispy_forms',
     'users',
+    'prom',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
