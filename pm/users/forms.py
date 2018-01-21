@@ -9,8 +9,6 @@ from crispy_forms.bootstrap import FormActions
 from .models import Account
 from django.contrib.auth import get_user_model
 
-User = get_user_model()
-
 
 class RegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
@@ -87,15 +85,16 @@ class UserDataForm(forms.ModelForm):
         self.helper.layout = Layout(
             'username',
             Field('password', type='hidden'),
-            Field('date_joined', type='hidden'),
-            Field('last_login', type='hidden'),
-            'first_name',
-            'last_name',
-            'email',
+            # Field('date_joined', type='hidden'),
+            # Field('last_login', type='hidden'),
+            # 'first_name',
+            # 'last_name',
+            # 'email',
             FormActions(Submit('update', 'Update',
                                css_class='btn-primary.btn-block')))
 
     class Meta:
-        model = Account
-        fields = ['username', 'password', 'first_name', 'last_name',
-                  'email', 'date_joined', 'last_login']
+        model = User
+        fields = ['username', 'password']
+        # fields = ['username', 'password', 'first_name', 'last_name',
+        #           'email', 'date_joined', 'last_login']

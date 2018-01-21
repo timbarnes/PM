@@ -5,7 +5,7 @@ from django.dispatch import receiver
 from tinymce import models as tinymce_models
 
 
-class Account(User):
+class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,
                                 parent_link=True)
     picture = models.ImageField(upload_to='media/profilepics/', blank=True)

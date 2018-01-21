@@ -89,6 +89,7 @@ DATABASES = {
     }
 }
 
+SESSION_COOKIE_SECURE = False
 
 # AUTH_USER_MODEL = 'users.Account'
 # Password validation
