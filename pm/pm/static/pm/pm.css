@@ -1,0 +1,58 @@
+div {font-family:Verdana,Helvetica,Arial,sans-serif;}
+a,address,blockquote,cite,code,dd,del,dfn,div,dl,dt,em,form,h1,h2,h3,h4,h5,h6,iframe,img,kbd,li,object,ol,p,q
+,samp,small,span,strong,sub,sup,ul,var,applet,b,big,center,dir,font,hr,i,menu,pre,s,strike,tt,u,abbr,acronym,
+bdo,button,fieldset,ins,label {text-align:left;border-bottom:0pt none;}
+p,li {font-size:12px;padding:0em;margin-top:0em;margin-bottom:.9em;line-height:1.5em;}
+ins {text-decoration:none;font-weight:bold;}
+hr {background-color:#ff0000;size:1px;}
+body {font-family:Verdana,"Myriad Web",Syntax,Helvetica,sans-serif;text-align:center;height:100%;}
+.bannerad {padding-bottom:.5em;}
+#banner {padding:1em;background-color:#888;margin-bottom:1em;}
+#banner h1 {text-align:right;margin-left:172px;font-size:x-large;}
+#nav {font-size:12px;font-weight:100;}
+#sidebar {float:right;width:220px;}
+#menu {background-color:#fff;border:1px #aaa solid;margin-left:1em;padding-left:1em;padding-top:0.5em;padding-right:1em;padding-bottom:.5em;line-height:1.25em;color:red;}
+#main {background-color:#fafafa;text-align:left;margin:auto;padding:2%;float:center;width:96%;max-width:920px;}
+#content {margin:0px;}
+.article {clear:left;}
+.firstpara,.toppara {margin-left:195px;line-height:1.75em;border-top:solid 1px #aaa;border-left:solid 1px #aaa;padding:1em;height:100%;}
+.toppara {font-height:90%;}
+.inset,.outset,.outsetmenu {font-size:11px;line-height:150%;font-style:italic;margin-bottom:.5em;}
+.inset {width:170px;border:solid 1px #ff9900;margin-left:.5em;padding:.5em;float:right;}
+.outset,.outsetmenu {float:left;width:183px;padding-right:12px;padding-top:1.8em;text-align:right;border-top:solid 1px #aaa;}
+.outsetmenu {text-align:left;}
+.exhibit {font-size:16px;margin:1em;border:solid 1px #ff9900;padding:1em;clear:none;}
+.exhibit p {font-size:14px;}
+#footer {padding-bottom:.5em;font-size:10px;text-align:right;font-style:oblique;}
+.advertising {margin-top:1em;float:right;}
+.rss {bottom:1em;left:1em;padding:.25em;background:#ffc;border-top:solid 1px #ff9900;}
+.rss img {float:none;}
+.rssfixed {position:fixed;bottom:2em;left:1em;margin-right:1em;}
+#byline {font-size:11px;background-color:#444;color:#aaa;font-style:italic;text-align:justify;padding:1em;border-left:solid 1px #aaa;border-bottom:solid 1px #aaa;}
+#byline h2 {color:#f00;}
+#menu p {margin:0px;margin-bottom:.3em;border-top-color:#f00;border-top-width:1px;line-height:125%;}
+.indent {padding-left:1.2em;}
+#menu h2,h3,h4 {font-size:large;}
+#menu a {color:#666666;font-weight:normal;background-color:transparent;}
+#menu a:hover {color:#ff0000;}
+a {text-decoration:none;background-color:transparent;}
+a:link {color:#c00000;}
+a:hover {color:#f00;text-decoration:underline;}
+a:visited {color:#800000;}
+.outsetmenu a {color:#666666;}
+.outsetmenu a:hover {color:#ff0000;background-color:#f4f4da;}
+h1,h2,h3,h4,h5,h6 {line-height:1.33em;margin-bottom:0.33em;font-family:Lato,"Myriad Web",Arial,Helvetica,sans-serif;}
+h1,h2,h3,h4,h5,h6,dt,th,thead,tfoot {background:none repeat scroll 0% 50%;color:black;}
+h1 {margin-top:.5em;font-size:large;padding:2px;}
+h1.pagetitle {font-size:xx-large;font-weight:400;}
+h1.sectiontitle {border-top:solid 1px #aaa;margin-top:0px;text-indent:190px;}
+h2 {font-size:medium;font-weight:bold;margin-top:.5em;}
+h3 {font-size:small;font-weight:bold;margin-top:.5em;}
+img {margin-left:1em;float:right;}
+.inline {float:none;}
+table {border-collapse:collapse;border:1px solid #eee;}
+table h1,h2,h3,h4 {}
+td {font-size:12px;border:1px solid #f44;padding:.5em;vertical-align:middle;}
+blockquote {border-left:2px solid #ff9900;padding-left:1em;}
+.outset li {padding:0px;}
+#banner a {color:#fff;}

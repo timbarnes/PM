@@ -1,0 +1,5 @@
+# direnv activation file
+echo "Activating PMdev"
+source PMdev/bin/activate
+export PS1="(PMdev)\W"
+

@@ -7,12 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/jumbotron.css" rel="stylesheet">
-    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({selector:'textarea'});</script>
-    <title>{% block pagetitle %}Questions and Quizzes // A Place for Learning{{ page.title }} // Tim Barnes{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'educate/educate.css' %}" />
+    <title>{% block pagetitle %}Simple Project Management{{ page.title }} // Tim Barnes{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'pm/pm.css' %}" />
     {% block js %} {% endblock %}
     <meta name="keywords" content="education, training, learning, online, architecture, are" {% block keywords %}{% endblock %}" />
     <meta name="description" content="{% block description %}{{ page.summary }}.{% endblock %}"Learning tools for busy people" />
@@ -43,7 +42,9 @@
 	    <li><a href="{% url 'auth_logout' %}">Logout</a></li>
 	    <li><p class="navbar-text">Logged in as {{ user.username }}</p></li>
 	    {% else %}
+        {% comment %}
 	    <li><a href="{% url 'auth_login' %}">Login</a></li>
+        {% endcomment %}
 	    {% endif %}
 	  </ul>
 	  {% endblock %}
@@ -52,7 +53,7 @@
     </nav>
 
     <div id="banner">
-	<h1><a href="{% url 'home' %}">// Questions and Quizzes //</a></h1>
+	<h1><a href="{% url 'home' %}">// ProM // Simple Project Management //</a></h1>
       </div>
 
     <div class="jumbotron">
@@ -91,6 +92,6 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -1,0 +1,26 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+<h1 class="pagetitle"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile for user {{ user.username }}.</h1>
+{% if message %}
+<p>{{ message %}</p>
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class=row>
+  <div class="col-sm-12 col-md-6">
+    <p>First and last names are optional.</p>
+    {% crispy user_form %}
+    <br />
+    <p><a href="{% url 'password_change' %}"><button type="button" class="btn btn-primary btn-sm">Change your password</button></a></p>
+  </div>
+  <div class= "col-sm-12 col-md-6">
+    <p>You can upload a profile picture, and tell us a bit about what
+      interests you and your reasons for using the site if you would like to.</p>
+    {% crispy profile_form %}
+    <br />
+<p>We will never share your e-mail address. It's useful as a way to
+  recover your password and for us to tell you about new features if
+  you're interested.</p>
+  </div>
+  {% endblock %}

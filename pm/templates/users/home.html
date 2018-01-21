@@ -1,10 +1,10 @@
 {% extends "users/base.html" %}
 {% block title %}
     <h1 class="pagetitle"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</h1>
-    <p>Learning and information management for everyone.</p>
+    <p>Project management for everyone.</p>
 {% endblock %}
 {% block content %}
-    <p>Gather information that's useful to you - questions and answers for testing your knowledge, articles about things that interest you, and personal to-do lists and notes to help you keep track of your life.</p>
+    <p>Track project status, actions and deadlines.</p>
     {% if user.is_authenticated %}
         <p><a href="{% url 'myHome' %}">My Home Page</a></p>
         {% else %}

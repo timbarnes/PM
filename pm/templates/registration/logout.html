@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}<h1 class=pagetitle>Logout</h1>{% endblock %}
+{% block menu %}{% endblock %}
+{% block content %}
+<br />
+<h2>You have been logged out.</h2>
+<br />
+<p>Return to <a href="{% url 'home' %}">home</a>, or <a href="{% url 'auth_login' %}" %}">login</a> again.</p>
+<br />
+{% endblock %}
