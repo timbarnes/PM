@@ -21,6 +21,7 @@ class UserRegistrationView(generic.FormView):
     form_class = RegistrationForm
     success_url = reverse_lazy('login')
     disallowed_url = reverse_lazy('home')
+    template_name = 'users/register.html'
 
     def register(self, request, **cleaned_data):
         """Custom registration view.
