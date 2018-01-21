@@ -43,7 +43,9 @@
 	    <li><a href="{% url 'auth_logout' %}">Logout</a></li>
 	    <li><p class="navbar-text">Logged in as {{ user.username }}</p></li>
 	    {% else %}
+        {% comment %}
 	    <li><a href="{% url 'auth_login' %}">Login</a></li>
+        {% endcomment %}
 	    {% endif %}
 	  </ul>
 	  {% endblock %}
