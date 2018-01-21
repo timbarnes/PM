@@ -25,7 +25,7 @@ urlpatterns = [
           'post_change_redirect': '/users/profile/',
           'extra_context': {'message': 'Password successfully updated'}},
          name='password_change'), path('admin/', admin.site.urls),
-    path('accounts/logout', logout, name='auth_logout'),
+    path('accounts/logout', logout, {'next_page': 'home'}, name='auth_logout'),
     path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
 ]

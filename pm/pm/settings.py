@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from YamJam import yamjam
+
+parms = yamjam()['pm']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,12 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ex!nlt)zpmb+ltybb-))yc$1+nrk=0%$d#fy6amls^-5r=po7u'
+SECRET_KEY = parms['django-secret-key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = parms['debug']
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [parms['allowed-hosts']]
 
 
 # Application definition
@@ -81,8 +84,8 @@ WSGI_APPLICATION = 'pm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': parms['database-engine'],
+        'NAME': os.path.join(BASE_DIR, parms['database-name']),
     }
 }
 
