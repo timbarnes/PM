@@ -5,7 +5,7 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 """
 from django.contrib import admin
 from django.urls import include, path
-from django.contrib.auth.views import login, password_change
+from django.contrib.auth.views import login, password_change, logout
 from users import forms, views
 from users.views import UserRegistrationView
 from django.contrib.auth import get_user_model
@@ -25,6 +25,7 @@ urlpatterns = [
           'post_change_redirect': '/users/profile/',
           'extra_context': {'message': 'Password successfully updated'}},
          name='password_change'), path('admin/', admin.site.urls),
+    path('accounts/logout', logout, name='auth_logout'),
     path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
 ]
