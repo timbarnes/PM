@@ -1,0 +1,90 @@
+{% extends "two-col.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+<h1 class="pagetitle"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Home page for {{ user.username }}.</h1>
+{% if message %}
+<p>{{ message %}</p>
+{% endif %}
+<p>Keep track of your personal content.</p>
+{% endblock %}
+
+{% block left %}
+   <h1>Subjects // <a href="{% url 'all_subjects' %}">View / add</a></h1>
+  {% if subject_subset %}
+  <table class="table table-striped">
+    <tr>
+      <th>Subject</th>
+      <th>Description</th>
+    </tr>
+    {% for sub in subject_subset %}
+    <tr>
+      <td><a href="{% url 'categories' sub.slug %}">{{ sub.name }}</a></td>
+      <td>{{ sub.description }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No subjects found</p>
+  {% endif %}
+   <h1>Categories // <a href="{% url 'all_categories' %}">View / add</a></h1>
+  {% if category_subset %}
+  <table class="table table-striped">
+    <tr>
+      <th>Category</th>
+      <th>Description</th>
+    </tr>
+    {% for cat in category_subset %}
+    <tr>
+      <td><a href="{% url 'questions'  cat.slug %}">{{ cat.name }}</a></td>
+      <td>{{ cat.description }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No categories found</p>
+  {% endif %}
+  {% endblock left %}
+
+  {% block right %}
+  <h1>Articles // <a href="{% url 'new_article' %}">Create new</a></h1>
+  {% if article_subset %}
+  <table class="table table-striped">
+    <tr>
+      <th>Article</th>
+      <th>Description</th>
+    </tr>
+    {% for art in article_subset %}
+    <tr>
+      <td><a href="{% url 'article' art.slug %}">{{ art.title }}</a></td>
+      <td>{{ art.summary }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No articles found</p>
+  {% endif %}
+    <h1>Notes // <a href="{% url 'notes' %}">Create new</a></h1>
+    <p>
+  <table class="table table-striped">
+    <tr>
+      <th>Title</th>
+    </tr>
+    {% for n in notes %}
+    <tr><td><a href="{% url 'note' n.slug %}">{{ n.title }}</a></td></tr>
+    {% endfor %}
+    </table>
+    <h1>Tasklists <a href="{% url 'taskLists' %}">// Create new</a></h1>
+    <table class="table table-striped">
+      <tr>
+	<th>Task List</th>
+      </tr>
+    {% for t in tasklists %}
+    <tr><td><a href="{% url 'tasks' t.slug %}">{{ t.name }}</td><tr>
+    {% endfor %}
+    </table>
+  <h1>Favorites</h1>
+  <p>- Not implemented. -</p>
+    {% for f in favorites %}
+    <p>{{ f }}</p>
+    {% endfor %}
+    {% endblock right %}

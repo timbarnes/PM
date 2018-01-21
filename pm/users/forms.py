@@ -96,6 +96,6 @@ class UserDataForm(forms.ModelForm):
                                css_class='btn-primary.btn-block')))
 
     class Meta:
-        model = User
+        model = Account
         fields = ['username', 'password', 'first_name', 'last_name',
                   'email', 'date_joined', 'last_login']

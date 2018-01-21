@@ -5,6 +5,7 @@ from django.contrib import messages
 from users.forms import RegistrationForm, ProfileForm, UserDataForm
 from users.models import Account
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 
 User = get_user_model()
 
@@ -22,24 +23,23 @@ class UserRegistrationView(generic.FormView):
     Customized registration includes creation of the empty profile.
     """
     form_class = RegistrationForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('home')
     disallowed_url = reverse_lazy('home')
     template_name = 'registration/registration_form.html'
 
-    def register(self, request, **cleaned_data):
+    def form_valid(self, form):
         """Custom registration view.
         """
         print('Starting registration')
-        print(cleaned_data)
+        print(form.cleaned_data)
         u = Account.objects.create_user(
-            cleaned_data['username'],
+            form.cleaned_data['username'],
             '',
-            cleaned_data['password1'])
-        p = Account()
-        p.user = u
-        p.save()
+            form.cleaned_data['password1'])
+        u.save()
         messages.success(self.request,
                          'Thank you for registering. Now you can log in.')
+        return super().form_valid(form)
 
 
 class ProfileView(generic.TemplateView):
@@ -49,17 +49,17 @@ class ProfileView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
-        user_form = UserDataForm(instance=self.request.user)
-        profile = get_object_or_404(Account, user=self.request.user)
-        profile_form = ProfileForm(instance=profile)
+        user = self.request.user
+        acct = user.account
+        user_form = UserDataForm(instance=user)
+        profile_form = ProfileForm(instance=acct)
         user_form.helper.form_action = reverse_lazy(
             'userdataUpdate',
             args=[self.request.user.pk])
         profile_form.helper.form_action = reverse_lazy(
-            'profileUpdate', args=[profile.pk])
+            'profileUpdate', args=[acct.pk])
         context.update({
-            'profile': get_object_or_404(
-                Account, user__username=self.request.user.username),
+            'profile': get_object_or_404(Account, user=self.request.user),
             'user_form': user_form,
             'profile_form': profile_form,
         })
