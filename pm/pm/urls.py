@@ -26,6 +26,7 @@ urlpatterns = [
           'extra_context': {'message': 'Password successfully updated'}},
          name='password_change'), path('admin/', admin.site.urls),
     path('accounts/logout', logout, {'next_page': 'home'}, name='auth_logout'),
+    path('accounts/profile/', views.ProfileView.as_view(), name='profile'),
     path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
 ]

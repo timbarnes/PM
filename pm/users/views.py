@@ -39,7 +39,7 @@ class UserRegistrationView(generic.FormView):
         p.user = u
         p.save()
         messages.success(self.request,
-                         'Thank you for registering. Now you can login.')
+                         'Thank you for registering. Now you can log in.')
 
 
 class ProfileView(generic.TemplateView):
@@ -143,6 +143,7 @@ class MyHomeView(generic.TemplateView):
     def get_context_data(self, **kwargs):
         print('MYHOME')
         context = super(MyHomeView, self).get_context_data(**kwargs)
+        print("user is: %s" % self.request.user)
         context.update({
             'profile': get_object_or_404(Account, user=self.request.user),
         })
