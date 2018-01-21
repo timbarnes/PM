@@ -4,6 +4,9 @@ from django.views import generic
 from django.contrib import messages
 from users.forms import RegistrationForm, ProfileForm, UserDataForm
 from users.models import Account
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 # Create your views here.
 
@@ -21,7 +24,7 @@ class UserRegistrationView(generic.FormView):
     form_class = RegistrationForm
     success_url = reverse_lazy('login')
     disallowed_url = reverse_lazy('home')
-    template_name = 'users/register.html'
+    template_name = 'registration/registration_form.html'
 
     def register(self, request, **cleaned_data):
         """Custom registration view.

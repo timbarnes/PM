@@ -8,6 +8,10 @@ from django.urls import include, path
 from django.contrib.auth.views import login, password_change
 from users import forms, views
 from users.views import UserRegistrationView
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
