@@ -7,7 +7,6 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Field
 from crispy_forms.bootstrap import FormActions
 from .models import Account
-from django.contrib.auth import get_user_model
 
 
 class RegistrationForm(UserCreationForm):

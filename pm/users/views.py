@@ -23,7 +23,7 @@ class UserRegistrationView(generic.FormView):
     Customized registration includes creation of the empty profile.
     """
     form_class = RegistrationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('login')
     disallowed_url = reverse_lazy('home')
     template_name = 'registration/registration_form.html'
 
@@ -32,7 +32,7 @@ class UserRegistrationView(generic.FormView):
         """
         print('Starting registration')
         print(form.cleaned_data)
-        u = Account.objects.create_user(
+        u = User.objects.create_user(
             form.cleaned_data['username'],
             '',
             form.cleaned_data['password1'])

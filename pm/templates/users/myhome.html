@@ -3,65 +3,51 @@
 {% block title %}
 <h1 class="pagetitle"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Home page for {{ user.username }}.</h1>
 {% if message %}
-<p>{{ message %}</p>
+<p>{{ message }}</p>
 {% endif %}
 <p>Keep track of your personal content.</p>
 {% endblock %}
 
 {% block left %}
-   <h1>Subjects // <a href="{% url 'all_subjects' %}">View / add</a></h1>
-  {% if subject_subset %}
+ {% comment %}
+   <h1>Projects // <a href="{% url 'all_projects' %}">View / add</a></h1>
+ {% if project_subset %}
   <table class="table table-striped">
     <tr>
-      <th>Subject</th>
+      <th>Project</th>
       <th>Description</th>
     </tr>
-    {% for sub in subject_subset %}
+    {% for proj in project_subset %}
     <tr>
-      <td><a href="{% url 'categories' sub.slug %}">{{ sub.name }}</a></td>
-      <td>{{ sub.description }}</td>
+      <td><a href="{% url 'projects' sub.slug %}">{{ proj.name }}</a></td>
+      <td>{{ proj.description }}</td>
     </tr>
     {% endfor %}
   </table>
   {% else %}
-  <p>No subjects found</p>
+  <p>No projects found</p>
   {% endif %}
-   <h1>Categories // <a href="{% url 'all_categories' %}">View / add</a></h1>
-  {% if category_subset %}
-  <table class="table table-striped">
-    <tr>
-      <th>Category</th>
-      <th>Description</th>
-    </tr>
-    {% for cat in category_subset %}
-    <tr>
-      <td><a href="{% url 'questions'  cat.slug %}">{{ cat.name }}</a></td>
-      <td>{{ cat.description }}</td>
-    </tr>
-    {% endfor %}
-  </table>
-  {% else %}
-  <p>No categories found</p>
-  {% endif %}
+  {% endcomment %}
   {% endblock left %}
 
   {% block right %}
-  <h1>Articles // <a href="{% url 'new_article' %}">Create new</a></h1>
+  {% comment %}
+  <h1>Deadlines // <a href="{% url 'new_article' %}">Create new</a></h1>
   {% if article_subset %}
   <table class="table table-striped">
     <tr>
       <th>Article</th>
       <th>Description</th>
     </tr>
-    {% for art in article_subset %}
+    {% for dl in deadline_subset %}
     <tr>
-      <td><a href="{% url 'article' art.slug %}">{{ art.title }}</a></td>
-      <td>{{ art.summary }}</td>
+      <td><a href="{% url 'deadline' art.slug %}">{{ dl.title }}</a></td>
+      <td>{{ dl.summary }}</td>
     </tr>
     {% endfor %}
   </table>
   {% else %}
-  <p>No articles found</p>
+  <p>No deadlines found</p>
   {% endif %}
     <h1>Notes // <a href="{% url 'notes' %}">Create new</a></h1>
     <p>
@@ -87,4 +73,5 @@
     {% for f in favorites %}
     <p>{{ f }}</p>
     {% endfor %}
+  {% endcomment %}
     {% endblock right %}
