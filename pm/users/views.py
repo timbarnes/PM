@@ -5,6 +5,7 @@ from django.contrib import messages
 from users.forms import RegistrationForm, ProfileForm, UserDataForm
 from users.models import Account
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import ObjectDoesNotExist
 
 User = get_user_model()
@@ -39,6 +40,26 @@ class UserRegistrationView(generic.FormView):
         u.save()
         messages.success(self.request,
                          'Thank you for registering. Now you can log in.')
+        return super().form_valid(form)
+
+
+class PasswordChangeView(generic.FormView):
+    """
+    Support password change functionality.
+    """
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('login')
+    disallowed_url = reverse_lazy('home')
+    template_name = 'registration/password_change.html'
+
+    def form_valid(self, form):
+        """
+        Instantiate password change.
+        """
+        print("Changing password...")
+        user = form.save()
+        update_session_auth_hash(self, user)
+        messages.success(self, 'Your password was successfully changed')
         return super().form_valid(form)
 
 
